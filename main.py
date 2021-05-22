@@ -13,11 +13,12 @@ except IndexError:
     folder = "./"
     name = "out.pdf"
 
-
+ext = [".jpg", ".png"]
 for dirpath, dirnames, filenames in os.walk(folder):
-    for filename in [f for f in filenames if f.endswith(".jpg")]:
+    for filename in [f for f in filenames if f.endswith(tuple(ext))]:
         full_path = os.path.join(dirpath, filename)
         imagelist.append(full_path)
+
 
 imagelist.sort()                                               # Sort the images by name.
 for i in range(0, len(imagelist)):
