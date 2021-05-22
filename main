@@ -1,18 +1,18 @@
 from fpdf import FPDF
 from PIL import Image
 import os
+import sys
 
 pdf = FPDF()
 imagelist = []                                                 # Contains the list of all images to be converted to PDF.
 
+try:
+    folder = sys.argv[1]                                                    # Folder containing all the images
+    name = sys.argv[2]                                                     # Name of the output PDF file.
+except IndexError:
+    folder = "./"
+    name = "out.pdf"
 
-# --------------- USER INPUT -------------------- #
-
-folder = ""                                                    # Folder containing all the images.
-name = ""                                                      # Name of the output PDF file.
-
-
-# ------------- ADD ALL THE IMAGES IN A LIST ------------- #
 
 for dirpath, dirnames, filenames in os.walk(folder):
     for filename in [f for f in filenames if f.endswith(".jpg")]:
