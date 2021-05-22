@@ -23,6 +23,18 @@ for dirpath, dirnames, filenames in os.walk(folder):
 imagelist.sort()                                               # Sort the images by name.
 for i in range(0, len(imagelist)):
     print(imagelist[i])
+    
+#de-interlace png files  https://stackoverflow.com/questions/7583564/how-do-i-deinterlace-an-image-in-python
+for i in range(0, len(imagelist)):
+    img=Image.open(imagelist[i])
+    size=list(img.size)
+    size[0] /= 2
+    size[1] /= 2
+    downsized=img.resize(size, Image.NEAREST) 
+    downsized.save(imagelist[i])
+    
+    
+    
 
 # --------------- ROTATE ANY LANDSCAPE MODE IMAGE IF PRESENT ----------------- #
 
